@@ -7,10 +7,15 @@ import 'package:intl/intl.dart';
 class NewTranscation extends StatefulWidget {
   final Function addNewTranscation;
 
-  NewTranscation(this.addNewTranscation);
+  NewTranscation(this.addNewTranscation) {
+    print('Constructor NewTranscation Widget');
+  }
 
   @override
-  _NewTranscationState createState() => _NewTranscationState();
+  _NewTranscationState createState() {
+    print('createState NewTranscation Widget');
+    return _NewTranscationState();
+  }
 }
 
 class _NewTranscationState extends State<NewTranscation> {
@@ -19,6 +24,28 @@ class _NewTranscationState extends State<NewTranscation> {
   var amountController = TextEditingController();
 
   DateTime _selectedDate;
+
+  _NewTranscationState() {
+    print('Constructor NewTranscation State');
+  }
+
+  @override
+  void initState() {
+    print('initState()');
+    super.initState();
+  }
+
+  @override
+  void didUpdateWidget(covariant NewTranscation oldWidget) {
+    print('didUpdateWidget()');
+    super.didUpdateWidget(oldWidget);
+  }
+
+  @override
+  void dispose() {
+    print('dispose()');
+    super.dispose();
+  }
 
   void submitData() {
     final enteredTitle = titleController.text;

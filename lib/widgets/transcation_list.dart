@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 import '../models/transcation.dart';
+import 'Transcation_Item.dart';
 
 class TranscationList extends StatelessWidget {
   final List<Transcation> transcations;
@@ -34,55 +35,18 @@ class TranscationList extends StatelessWidget {
           )
         : ListView.builder(
             itemBuilder: (context, index) {
-              return Card(
-                margin: EdgeInsets.symmetric(
-                  vertical: 10,
-                  horizontal: 5,
-                ),
-                elevation: 5,
-                child: ListTile(
-                  leading: CircleAvatar(
-                    radius: 50,
-                    child: Container(
-                      padding: EdgeInsets.all(5),
-                      child: FittedBox(
-                        fit: BoxFit.fitWidth,
-                        child: Text(
-                          '\$${(transcations[index].amount).toStringAsFixed(2)}',
-                        ),
-                      ),
-                    ),
-                  ),
-                  title: Text(
-                    transcations[index].title,
-                    style: Theme.of(context).textTheme.title,
-                  ),
-                  subtitle: Text(
-                    DateFormat.yMMMd().format(transcations[index].date),
-                  ),
-                  trailing: MediaQuery.of(context).size.width > 460
-                      ? FlatButton.icon(
-                          icon: Icon(Icons.delete),
-                          onPressed: () =>
-                              deleteTranscation(transcations[index].id),
-                          textColor: Colors.red,
-                          label: Text('Delete'),
-                        )
-                      : IconButton(
-                          icon: Icon(Icons.delete),
-                          color: Theme.of(context).errorColor,
-                          onPressed: () =>
-                              deleteTranscation(transcations[index].id),
-                        ),
-                ),
+              return TranscationItem(
+                key: ValueKey(transcations[index].id),
+                transcation: transcations[index],
+                deleteTranscation: deleteTranscation,
               );
               //Card(
               //   child: Row(
               //     children: <Widget>[
               //       Container(
               //         margin: EdgeInsets.symmetric(
-              //           vertical: 10,
-              //           horizontal: 15,
+              //   horizontal: 15,
+              //                   vertical: 10,
               //         ),
               //         decoration: BoxDecoration(
               //           border: Border.all(
